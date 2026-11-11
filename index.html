@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Internacional de Seguros KAGE</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        SistemaSeguros KAGE
+    </div>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Clientes</a>
+        <a href="#">Pólizas</a>
+        <a href="#">Pagos</a>
+        <a href="#">Siniestros</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <div class="hero-texto">
+        <h1>Protegemos tu futuro</h1>
+
+        <p>
+            Gestiona clientes, pólizas, pagos y siniestros
+            desde una única plataforma moderna y segura.
+        </p>
+
+        <button>Más Información</button>
+    </div>
+
+</section>
+
+<section class="registro">
+
+    <div class="formulario">
+
+        <h2>Registro de Clientes</h2>
+
+        <form action="guardar_clientes.php" method="POST">
+
+            <div class="campo">
+                <label>Nombre</label>
+                <input type="text" name="nombre" required>
+            </div>
+
+            <div class="campo">
+                <label>Apellido</label>
+                <input type="text" name="apellido" required>
+            </div>
+
+            <div class="campo">
+                <label>Correo Electrónico</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="campo">
+                <label>Teléfono</label>
+                <input type="text" name="telefono" required>
+            </div>
+
+            <button type="submit" class="btn-registrar">
+                Registrar Cliente
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="informacion">
+
+        <h2>Nuestros Servicios</h2>
+
+        <div class="card">
+            <h3>🚗 Seguro Vehicular</h3>
+            <p>Protección completa para automóviles.</p>
+        </div>
+
+        <div class="card">
+            <h3>Seguro de Hogar</h3>
+            <p>Cobertura frente a daños e imprevistos.</p>
+        </div>
+
+        <div class="card">
+            <h3>Seguro de Vida</h3>
+            <p>Respaldo económico para tu familia.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        Sistema Internacional de Seguros KAGE 2026
+    </p>
+
+</footer>
+
+</body>
+</html>

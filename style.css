@@ -1,0 +1,243 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+/* HEADER */
+
+header{
+
+    background:linear-gradient(
+        90deg,
+        #0f4c81,
+        #8e24aa
+    );
+
+    color:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 80px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+}
+
+nav a{
+
+    color:white;
+
+    text-decoration:none;
+
+    margin-left:25px;
+
+    font-weight:500;
+}
+
+/* HERO */
+
+.hero{
+
+    height:400px;
+
+    background:linear-gradient(
+        rgba(15,76,129,.8),
+        rgba(142,36,170,.8)
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    color:white;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    max-width:700px;
+    margin:auto;
+}
+
+.hero button{
+
+    margin-top:25px;
+
+    padding:15px 40px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:white;
+
+    color:#8e24aa;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+/* CONTENIDO */
+
+.registro{
+
+    width:90%;
+
+    margin:50px auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:40px;
+}
+
+.formulario{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+
+.formulario h2{
+
+    color:#0f4c81;
+
+    margin-bottom:25px;
+}
+
+.campo{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:20px;
+}
+
+.campo label{
+
+    margin-bottom:8px;
+
+    font-weight:600;
+}
+
+.campo input{
+
+    padding:14px;
+
+    border:2px solid #ddd;
+
+    border-radius:15px;
+}
+
+.campo input:focus{
+
+    outline:none;
+
+    border-color:#8e24aa;
+}
+
+.btn-registrar{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        90deg,
+        #0f4c81,
+        #8e24aa
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    cursor:pointer;
+}
+
+.informacion h2{
+
+    margin-bottom:20px;
+
+    color:#0f4c81;
+}
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+/* FOOTER */
+
+footer{
+
+    background:#0f4c81;
+
+    color:white;
+
+    text-align:center;
+
+    padding:20px;
+
+    margin-top:50px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    header{
+        flex-direction:column;
+    }
+
+    nav{
+        margin-top:15px;
+    }
+
+    .registro{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+}
