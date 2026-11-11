@@ -1,0 +1,132 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+  labels:
+    app: sistemaseguros
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sistemaseguros-db
+  labels:
+    app: sistemaseguros
+    tier: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sistemaseguros
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: sistemaseguros
+        tier: database
+    spec:
+      containers:
+        - name: mysql
+          image: image-registry.openshift-image-registry.svc:5000/openshift/mysql:8.0-el8
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root_password"
+            - name: MYSQL_DATABASE
+              value: "sistemaseguros"
+            - name: MYSQL_USER
+              value: "seguros_user"
+            - name: MYSQL_PASSWORD
+              value: "seguros_pass"
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql/data
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  labels:
+    app: sistemaseguros
+    tier: database
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+  selector:
+    app: sistemaseguros
+    tier: database
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sistemaseguros-app
+  labels:
+    app: sistemaseguros
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sistemaseguros
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: sistemaseguros
+        tier: frontend
+    spec:
+      containers:
+        - name: php-web
+          image: ubi8/php-74:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: DB_HOST
+              value: "mysql-service"
+            - name: DB_USER
+              value: "seguros_user"
+            - name: DB_PASSWORD
+              value: "seguros_pass"
+            - name: DB_NAME
+              value: "sistemaseguros"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp-service
+  labels:
+    app: sistemaseguros
+    tier: frontend
+spec:
+  ports:
+    - port: 80
+      targetPort: 8080
+  selector:
+    app: sistemaseguros
+    tier: frontend
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: sistemaseguros-route
+  labels:
+    app: sistemaseguros
+spec:
+  to:
+    kind: Service
+    name: webapp-service
+  port:
+    targetPort: http
